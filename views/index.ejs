@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Gerador de QRCode</title>
 </head>
 <body>
@@ -33,14 +34,14 @@
         <label for="email">E-mail</label><br>
         <input type="text" id="email"><br>
 
-        <input type="button" onclick="enviar()" value="Enviar">
+        <input type="button"class="btn btn-primary" onclick="enviar()" value="Enviar"><br><br>
 
     </form>
 
     <form action="/scan" method="POST">
         <label for="site">Informe a URL do site:</label><br>
         <input name = "url" id = "site" type = "text" required>
-        <button type="submit" value="Gerar QR"> Gerar QR </button>
+        <button type="submit" class="btn btn-primary" value="Gerar QR"> Gerar QR </button>
         <input type="checkbox" name="agreement" id="agreement">
         <label for="agreement" id="agreement-label"> Eu li e aceito os <a href="#"> termos de uso</label><br>
     </form> 

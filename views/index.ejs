@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Gerador de QRCode</title>
 </head>
+
 <body>
     <div>
         <h1>Criar Cartao de Visita</h1>
     </div>
-    <hr>  
-    <form action="">
+    <hr>
+    <form action="/scan" method="POST">
         <label for="cep">Cep</label><br>
         <input type="text" id="cep"><br>
         <label for="logradouro">Logradouro</label><br>
@@ -22,7 +25,7 @@
         <label for="bairro">Bairro</label><br>
         <input type="text" id="bairro"><br>
         <label for="localidade">Cidade</label><br>
-        <input type="text" id="localidade"><br>       
+        <input type="text" id="localidade"><br>
         <label for="uf">UF</label><br>
         <input type="text" id="uf"><br>
         <label for="nome">Nome Completo</label><br>
@@ -34,42 +37,39 @@
         <label for="email">E-mail</label><br>
         <input type="text" id="email"><br>
 
-        <input type="button"class="btn btn-primary" onclick="enviar()" value="Enviar"><br><br>
 
-    </form>
 
-    <form action="/scan" method="POST">
         <label for="site">Informe a URL do site:</label><br>
-        <input name = "url" id = "site" type = "text" required>
-        <button type="submit" class="btn btn-primary" value="Gerar QR"> Gerar QR </button>
+        <input name="url" id="site" type="text" required>
+        <input type="button"class="btn btn-primary" onclick="enviar()" value="Enviar"><br><br>
         <input type="checkbox" name="agreement" id="agreement">
         <label for="agreement" id="agreement-label"> Eu li e aceito os <a href="#"> termos de uso</label><br>
-    </form> 
-    
+    </form>
+
     <script>
         const cep = document.getElementById("cep");
-        cep.addEventListener("blur",(e) => {
+        cep.addEventListener("blur", (e) => {
             let Cep = document.getElementById("cep").value;
             let saerch = cep.value.replace("-", "")
             console.log(saerch)
             fetch(`https://viacep.com.br/ws/${saerch}/json/`).then((response) => {
-                response.json().then(data =>{
-                   console.log(data)
-                   document.getElementById("nome").value = ("");
-                   document.getElementById("funcao").value = ("");
-                   document.getElementById("telefone").value = ("");
-                   document.getElementById("email").value = ("");
-                   document.getElementById("logradouro").value = data.logradouro;
-                   document.getElementById("numero").value = ("");
-                   document.getElementById("bairro").value = data.bairro;
-                   document.getElementById("localidade").value = data.localidade;                   
-                   document.getElementById("uf").value = data.uf;
-                   document.getElementById("site").value = ("");
+                response.json().then(data => {
+                    console.log(data)
+                    document.getElementById("nome").value = ("");
+                    document.getElementById("funcao").value = ("");
+                    document.getElementById("telefone").value = ("");
+                    document.getElementById("email").value = ("");
+                    document.getElementById("logradouro").value = data.logradouro;
+                    document.getElementById("numero").value = ("");
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("localidade").value = data.localidade;
+                    document.getElementById("uf").value = data.uf;
+                    document.getElementById("site").value = ("");
 
                 })
             })
         })
-        function enviar(){
+        function enviar() {
             let nome = document.getElementById("nome").value;
             let funcao = document.getElementById("funcao").value;
             let telefone = document.getElementById("telefone").value;
@@ -82,19 +82,31 @@
             let site = document.getElementById("site").value;
 
             let json = {
-                "nome" : nome,
-                "funcao" : funcao,
-                "telefone" : telefone,
-                "email" : email,
-                "logradouro" : logradouro,
-                "numero" : numero,
-                "bairro" : bairro, 
-                "localidade" : localidade,                
-                "uf" : uf,
-                "site" : site
+                "nome": nome,
+                "funcao": funcao,
+                "telefone": telefone,
+                "email": email,
+                "logradouro": logradouro,
+                "numero": numero,
+                "bairro": bairro,
+                "localidade": localidade,
+                "uf": uf,
+                "site": site
             };
+            fetch("/scan",
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(json)
+                })
+                .then(function (res) { console.log(res) })
+                .catch(function (res) { console.log(res) })
             console.log(json);
         };
     </script>
 </body>
+
 </html>

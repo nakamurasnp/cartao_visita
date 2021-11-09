@@ -13,13 +13,14 @@ app.get("/", (req,res) => {
 });
 
 app.post("/scan", (req, res) =>{
-    const url = req.body.url;
-    if(url.lenght === 0) 
-        res.send("Dados Inválidos!");
-    qr.toDataURL(url, (err, src) => {
-        if(err) res.send("Erro!");
-        res.render("scan",{src});
-    });
+    const url = req.body;
+    console.log(url);
+ //   if(url.lenght === 0) 
+  //      res.send("Dados Inválidos!");
+  //  qr.toDataURL(url, (err, src) => {
+  //      if(err) res.send("Erro!");
+  //      res.render("scan",{src});
+   // });
 })
 
 const port = 5000;

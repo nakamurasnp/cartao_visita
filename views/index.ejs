@@ -17,81 +17,82 @@
     <hr>
     <form action="/scan" method="POST">
         <label for="cep">Cep</label><br>
-        <input type="text" id="cep"><br>
+        <input name="cep" type="text" id="cep_id"><br>
         <label for="logradouro">Logradouro</label><br>
-        <input type="text" id="logradouro"><br>
+        <input name= "logradouro" type="text" id="logradouro_id"><br>
         <label for="numero">Número</label><br>
-        <input type="text" id="numero"><br>
+        <input name= "numero" type="text" id="numero_id"><br>
         <label for="bairro">Bairro</label><br>
-        <input type="text" id="bairro"><br>
+        <input name= "bairro" type="text" id="bairro_id"><br>
         <label for="localidade">Cidade</label><br>
-        <input type="text" id="localidade"><br>
+        <input name= "localidade" type="text" id="localidade_id"><br>
         <label for="uf">UF</label><br>
-        <input type="text" id="uf"><br>
+        <input name= "uf" type="text" id="uf_id"><br>
         <label for="nome">Nome Completo</label><br>
-        <input type="text" id="nome"><br>
+        <input name= "nome" type="text" id="nome_id"><br>
         <label for="funcao">Função</label><br>
-        <input type="text" id="funcao"><br>
+        <input name= "funcao" type="text" id="funcao_id"><br>
         <label for="telefone">Telefone</label><br>
-        <input type="text" id="telefone"><br>
+        <input name= "telefone" type="text" id="telefone_id"><br>
         <label for="email">E-mail</label><br>
-        <input type="text" id="email"><br>
+        <input name= "email" type="text" id="email_id"><br>
+
 
 
 
         <label for="site">Informe a URL do site:</label><br>
-        <input name="url" id="site" type="text" required>
-        <input type="button"class="btn btn-primary" onclick="enviar()" value="Enviar"><br><br>
+        <input name="url" id="site_id" type="text" required>
+        <input type="submit"class="btn btn-primary" value="Enviar"><br><br>
         <input type="checkbox" name="agreement" id="agreement">
         <label for="agreement" id="agreement-label"> Eu li e aceito os <a href="#"> termos de uso</label><br>
     </form>
 
     <script>
-        const cep = document.getElementById("cep");
+        const cep = document.getElementById("cep_id");
         cep.addEventListener("blur", (e) => {
-            let Cep = document.getElementById("cep").value;
+            let Cep = document.getElementById("cep_id").value;
             let saerch = cep.value.replace("-", "")
             console.log(saerch)
             fetch(`https://viacep.com.br/ws/${saerch}/json/`).then((response) => {
                 response.json().then(data => {
                     console.log(data)
-                    document.getElementById("nome").value = ("");
-                    document.getElementById("funcao").value = ("");
-                    document.getElementById("telefone").value = ("");
-                    document.getElementById("email").value = ("");
-                    document.getElementById("logradouro").value = data.logradouro;
-                    document.getElementById("numero").value = ("");
-                    document.getElementById("bairro").value = data.bairro;
-                    document.getElementById("localidade").value = data.localidade;
-                    document.getElementById("uf").value = data.uf;
-                    document.getElementById("site").value = ("");
+                    document.getElementById("nome_id").value = ("");
+                    document.getElementById("funcao_id").value = ("");
+                    document.getElementById("telefone_id").value = ("");
+                    document.getElementById("email_id").value = ("");
+                    document.getElementById("logradouro_id").value = data.logradouro;
+                    document.getElementById("numero_id").value = ("");
+                    document.getElementById("bairro_id").value = data.bairro;
+                    document.getElementById("localidade_id").value = data.localidade;
+                    document.getElementById("uf_id").value = data.uf;
+                    document.getElementById("site_id").value = ("");
 
                 })
             })
         })
         function enviar() {
-            let nome = document.getElementById("nome").value;
-            let funcao = document.getElementById("funcao").value;
-            let telefone = document.getElementById("telefone").value;
-            let email = document.getElementById("email").value;
-            let logradouro = document.getElementById("logradouro").value;
-            let numero = document.getElementById("numero").value;
-            let bairro = document.getElementById("bairro").value;
-            let localidade = document.getElementById("localidade").value;
-            let uf = document.getElementById("uf").value;
-            let site = document.getElementById("site").value;
+            let nome = document.getElementById("nome_id").value;
+            let funcao = document.getElementById("funcao_id").value;
+            let telefone = document.getElementById("telefone_id").value;
+            let email = document.getElementById("email_id").value;
+            let logradouro = document.getElementById("logradouro_id").value;
+            let numero = document.getElementById("numero_id").value;
+            let bairro = document.getElementById("bairr_id").value;
+            let localidade = document.getElementById("localidade_id").value;
+            let uf = document.getElementById("uf_id").value;
+            let site = document.getElementById("site_id").value;
 
             let json = {
-                "nome": nome,
-                "funcao": funcao,
-                "telefone": telefone,
-                "email": email,
-                "logradouro": logradouro,
-                "numero": numero,
-                "bairro": bairro,
-                "localidade": localidade,
-                "uf": uf,
-                "site": site
+                "nome_id": nome,
+                "funcao_id": funcao,
+                "telefone_id": telefone,
+                "email_id": email,
+                "logradouro_id": logradouro,
+                "numero_id": numero,
+                "bairro_id": bairro,
+                "localidade_id": localidade,
+                "uf_id": uf,
+                "site_id": site
             };
             fetch("/scan",
                 {

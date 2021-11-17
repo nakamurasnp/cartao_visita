@@ -1,6 +1,7 @@
 const express = require("express");
 const bp = require("body-parser");
 const qr = require("qrcode");
+const { json } = require("body-parser");
 
 const app = express();
 
@@ -13,14 +14,27 @@ app.get("/", (req,res) => {
 });
 
 app.post("/scan", (req, res) =>{
-    const url = req.body;
-    console.log(url);
- //   if(url.lenght === 0) 
-  //      res.send("Dados Inválidos!");
-  //  qr.toDataURL(url, (err, src) => {
-  //      if(err) res.send("Erro!");
-  //      res.render("scan",{src});
-   // });
+    const cep = req.body.cep;
+    const logradoura = req.body.logradoura;
+    const numero = req.body.numero;
+    const bairro = req.body.bairro;
+    const localidade = req.body.localidade;
+    const uf = req.body.uf;
+    const nome = req.body.nome;
+    const funcao = req.body.funcao;
+    const telefone = req.body.telefone;
+    const email = req.body.email;
+    const url = req.body.url;
+    
+    console.log(req.body);  
+    
+    if(url.lenght === 0) 
+       res.send("Dados Inválidos!");
+    qr.toDataURL(url, (err, src) => {
+        if(err) res.send("Erro!");
+        res.render("scan",{src});
+    });
+    
 })
 
 const port = 5000;

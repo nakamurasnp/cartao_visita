@@ -12,15 +12,16 @@
 <body>
     <div class="container">
         <h1>Cartão Gerado Com Sucesso</h1>
+        <img src=<%=src%> alt="QRCode">
         <p> Faça o escanemaneto do QRCode para acessar o site </p>
         <hr>        
-        <div class="card" style="width: 18rem;">
-            <img src=<%=src%> alt="QRCode">                
+        <div class="card" style="width: 18rem;">                      
             <div class="card-body">
                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
             </div>
           </div>
     </div>
+  
     <hr>
     <form action="/scan" method="POST">
         <input name="url" type="text" required>

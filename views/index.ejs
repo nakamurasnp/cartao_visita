@@ -11,41 +11,85 @@
 </head>
 
 <body>
-    <div>
-        <h1>Criar Cartao de Visita</h1>
+    <div class="container">
+        <div class="text-center">
+            <img src="http://portal.unemat.br/imagens/logo-unemat-maldonado.png" class="img-fluid"
+                alt="Imagem responsiva">
+            <div>
+                <h1>Criar Cartão de Visita</h1>
+            </div>
+        </div>
+        <hr>
     </div>
-    <hr>
     <form action="/scan" method="POST">
-        <label for="cep">Cep</label><br>
-        <input name="cep" type="text" id="cep_id"><br>
-        <label for="logradouro">Logradouro</label><br>
-        <input name= "logradouro" type="text" id="logradouro_id"><br>
-        <label for="numero">Número</label><br>
-        <input name= "numero" type="text" id="numero_id"><br>
-        <label for="bairro">Bairro</label><br>
-        <input name= "bairro" type="text" id="bairro_id"><br>
-        <label for="localidade">Cidade</label><br>
-        <input name= "localidade" type="text" id="localidade_id"><br>
-        <label for="uf">UF</label><br>
-        <input name= "uf" type="text" id="uf_id"><br>
-        <label for="nome">Nome Completo</label><br>
-        <input name= "nome" type="text" id="nome_id"><br>
-        <label for="funcao">Função</label><br>
-        <input name= "funcao" type="text" id="funcao_id"><br>
-        <label for="telefone">Telefone</label><br>
-        <input name= "telefone" type="text" id="telefone_id"><br>
-        <label for="email">E-mail</label><br>
-        <input name= "email" type="text" id="email_id"><br>
-
-
-
-
-        <label for="site">Informe a URL do site:</label><br>
-        <input name="url" id="site_id" type="text" required>
-        <input type="submit"class="btn btn-primary" value="Enviar"><br><br>
-        <input type="checkbox" name="agreement" id="agreement">
-        <label for="agreement" id="agreement-label"> Eu li e aceito os <a href="#"> termos de uso</label><br>
+        <div class="container">
+            <div class="form-group col-md-6">
+                <label for="site">Informe a URL do site:</label>
+                <input name="url" class="form-control" id="site_id" type="text"
+                    placeholder="Insira o endereco do site para gerar o QRCode" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nome">Nome Completo</label>
+                <input name="nome" class="form-control" type="text" id="nome_id" placeholder="Insira o Nome Completo">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="funcao">Função</label>
+                <input name="funcao" class="form-control" type="text" id="funcao_id" placeholder="Insira sua função">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="telefone">Telefone</label>
+                <input name="telefone" class="form-control" type="text" id="telefone_id"
+                    placeholder="Insira o telefone">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">E-mail</label>
+                <input name="email" class="form-control" type="email" id="email_id" placeholder="Insira o E-mail">
+            </div>
+            <div class="form-group col-md-1">
+                <label for="cep">Cep</label>
+                <input name="cep" class="form-control" type="text" id="cep_id" placeholder="Buscar CEP">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="logradouro">Logradouro</label>
+                    <input name="logradouro" class="form-control" type="text" id="logradouro_id">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="numero">Número</label>
+                    <input name="numero" class="form-control" type="text" id="numero_id" placeholder="Insira o número">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="bairro">Bairro</label>
+                    <input name="bairro" class="form-control" type="text" id="bairro_id">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="localidade">Cidade</label>
+                    <input name="localidade" class="form-control" type="text" id="localidade_id">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="uf">UF</label>
+                    <input name="uf" class="form-control" type="text" id="uf_id"><br><br>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <input type="submit" class="btn btn-success" value="Enviar">
+                </div>
+                <div class="col">
+                    <input type="checkbox" name="agreement" id="agreement">
+                    <label for="agreement" id="agreement-label"> Eu li e aceito os <a href="#"> termos de uso</label><br><br>
+                </div>
+            </div>
+        </div>
     </form>
+
+    <footer id="myFooter">
+        <div class="text-center">
+            <p class="footer-copyright">© 2021 Copyright - Sistemas de Informação</p>
+        </div>
+    </footer>
 
     <script>
         const cep = document.getElementById("cep_id");
@@ -55,17 +99,12 @@
             console.log(saerch)
             fetch(`https://viacep.com.br/ws/${saerch}/json/`).then((response) => {
                 response.json().then(data => {
-                    console.log(data)
-                    document.getElementById("nome_id").value = ("");
-                    document.getElementById("funcao_id").value = ("");
-                    document.getElementById("telefone_id").value = ("");
-                    document.getElementById("email_id").value = ("");
-                    document.getElementById("logradouro_id").value = data.logradouro;
-                    document.getElementById("numero_id").value = ("");
+                    console.log(data)                      
+                    document.getElementById("logradouro_id").value = data.logradouro;                    
                     document.getElementById("bairro_id").value = data.bairro;
                     document.getElementById("localidade_id").value = data.localidade;
                     document.getElementById("uf_id").value = data.uf;
-                    document.getElementById("site_id").value = ("");
+                    
 
                 })
             })

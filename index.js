@@ -9,6 +9,7 @@ app.set("view engine", "ejs");
 app.use(bp.urlencoded({extend:false}));
 app.use(bp.json());
 
+
 app.get("/", (req,res) => {
     res.render("index");
 });
@@ -28,13 +29,13 @@ app.post("/scan", (req, res) =>{
     
     console.log(req.body);  
     
-    if(url.lenght === 0) 
+   /* if(url.lenght === 0) 
        res.send("Dados Inválidos!");
     qr.toDataURL(url, (err, src) => {
         if(err) res.send("Erro!");
         res.render("scan",{src});
-    });
-    
+    });*/
+    res.render("scan",{corpo: req.body});
 })
 
 const port = 5000;

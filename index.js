@@ -26,16 +26,18 @@ app.post("/scan", (req, res) =>{
     const telefone = req.body.telefone;
     const email = req.body.email;
     const url = req.body.url;
+    //const src = req.body.src;
     
     console.log(req.body);  
     
-   /* if(url.lenght === 0) 
+    if(url.lenght === 0) 
        res.send("Dados Inválidos!");
     qr.toDataURL(url, (err, src) => {
         if(err) res.send("Erro!");
-        res.render("scan",{src});
-    });*/
-    res.render("scan",{corpo: req.body});
+        res.render("scan",{corpo: req.body,src});       
+    });
+    
+    
 })
 
 const port = 5000;

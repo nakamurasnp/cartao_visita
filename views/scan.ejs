@@ -95,6 +95,13 @@
     bottom: 1em;
     left: 1em;
   }
+  .cartao .lado.verso h2 {
+    display: block;
+    float: right;
+    margin-right: 30px;
+    margin-top:1cm;
+  
+  }  
 </style>>
 
 </head>
@@ -116,7 +123,7 @@
             <p class="info"><%-corpo.funcao -%></p>
           </div>
           <div class="lado verso">
-            <h1 class="text-center"><img src=<%=src%> alt="QRCode"> </h1>
+            <h2 class="text-center"><img src=<%=src%> alt="QRCode"> </h2>
             <p> <%-corpo.nome -%><br>
                 <%-corpo.funcao -%><br /><br />
                 <%-corpo.logradouro -%> 

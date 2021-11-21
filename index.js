@@ -26,7 +26,7 @@ app.post("/scan", (req, res) =>{
     const telefone = req.body.telefone;
     const email = req.body.email;
     const url = req.body.url;
-    //const src = req.body.src;
+    
     
     console.log(req.body);  
     

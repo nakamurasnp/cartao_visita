@@ -88,13 +88,13 @@
     font-size: 3em;
   }
   .cartao .lado.frente p {
-    font-size: 1.5em;
+    font-size: 1.6em;
     transform: translate3d(0,2em,0);
   }
   .cartao .lado.verso p {
     
     position: absolute;
-    font-size: 1.5em;
+    font-size: 1.6em;
     bottom: 1em;
     left: 1em;
   }
@@ -108,7 +108,7 @@
 
 </head>
 <body>
-  <div class="container">
+   <div class="container">
     <div class="text-center">
         <img src="http://portal.unemat.br/imagens/logo-unemat-maldonado.png" class="img-fluid"
             alt="Imagem responsiva">
@@ -118,6 +118,7 @@
     </div>
     <hr>
 </div>
+<div id="print" class="conteudo">
     <div class="portaCartao">
         <div class="cartao">
           <div class="lado frente">
@@ -139,7 +140,19 @@
                 Site: <%-corpo.url -%></p>
           </div>
         </div>
-      </div>  
-    <hr>  
+      </div> 
+    </div> 
+    <hr> 
+    <script>
+      function cont(){
+         var conteudo = document.getElementById('print').innerHTML;
+         tela_impressao = window.open('about:blank');
+         tela_impressao.document.write(conteudo);
+         tela_impressao.window.print();
+         tela_impressao.window.close();
+      }
+      </script>   
+      
+      <input type="button" class="btn btn-success" onclick="cont();" value="Imprimir Cartão"> 
 </body>
 </html>

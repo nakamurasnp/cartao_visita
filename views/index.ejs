@@ -106,45 +106,7 @@
 
                 })
             })
-        })
-        function enviar() {
-            let nome = document.getElementById("nome_id").value;
-            let funcao = document.getElementById("funcao_id").value;
-            let telefone = document.getElementById("telefone_id").value;
-            let email = document.getElementById("email_id").value;
-            let logradouro = document.getElementById("logradouro_id").value;
-            let numero = document.getElementById("numero_id").value;
-            let bairro = document.getElementById("bairr_id").value;
-            let localidade = document.getElementById("localidade_id").value;
-            let uf = document.getElementById("uf_id").value;
-            let site = document.getElementById("site_id").value;
-
-            let json = {
-                "nome_id": nome,
-                "funcao_id": funcao,
-                "telefone_id": telefone,
-                "email_id": email,
-                "logradouro_id": logradouro,
-                "numero_id": numero,
-                "bairro_id": bairro,
-                "localidade_id": localidade,
-                "uf_id": uf,
-                "site_id": site
-            };
-            fetch("/scan",
-                {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    method: "POST",
-                    body: JSON.stringify(json)
-                })
-                .then(function (res) { console.log(res) })
-                .catch(function (res) { console.log(res) })
-            console.log(json);
-        };
+        })       
     </script>
 </body>
-
 </html>
